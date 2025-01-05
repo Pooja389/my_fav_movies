@@ -35,4 +35,4 @@ This Flask application allows users to manage their favorite movies. Users can:
 3. run the application
    ```bash
    python main.py
-      
+4. press ctrl+click on http://127.0.0.1:5000 in terminal        
