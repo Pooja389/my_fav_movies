@@ -7,7 +7,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField,IntegerField
 from wtforms.validators import DataRequired
 import requests
-
+import os
 
 class Base(DeclarativeBase):
   pass
@@ -15,7 +15,7 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.getenv("key")
 Bootstrap5(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///movies.db"
@@ -61,7 +61,7 @@ def home():
 @app.route("/add",methods = ["GET","POST"])
 def add_movie():
     form = AddMovie()
-    api_key = "9fc65133"
+    api_key = os.getenv("api_key")
     movie_title = form.movie_name.data
     url = f"http://www.omdbapi.com/?apikey={api_key}&t={movie_title}"
 
